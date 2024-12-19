@@ -6,10 +6,7 @@ const initialState: State = {
     scoreA: 0,
     scoreB: 0,
     history: [],
-    shotsRemaining: 10, // 5 tirs par équipe
-    totalShots: 10,
-    shotsA: 0,
-    shotsB: 0,
+    totalShots: 10, // 5 tirs par équipe
 };
 
 const main = (): void => {

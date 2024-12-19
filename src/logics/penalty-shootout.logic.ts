@@ -10,12 +10,12 @@ export const penaltyShootout = (state: State): State => {
         return state;
     }
 
-    if (state.shotsRemaining === 0) {
+    if (state.totalShots === 0) {
         // Prolongation de la séance de tirs au but
-        return penaltyShootout({...state, shotsRemaining: 2});
+        return penaltyShootout({...state, totalShots: 2});
     }
 
-    const team: Team = state.shotsRemaining % 2 === 0 ? "A" : "B";
+    const team: Team = state.totalShots % 2 === 0 ? "A" : "B";
     const scored = simulatePenaltyKick();
     const newState = updateState(state, team, scored);
 
