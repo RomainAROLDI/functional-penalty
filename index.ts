@@ -8,6 +8,8 @@ const initialState: State = {
     history: [],
     shotsRemaining: 10, // 5 tirs par équipe
     totalShots: 10,
+    shotsA: 0,
+    shotsB: 0,
 };
 
 const main = (): void => {

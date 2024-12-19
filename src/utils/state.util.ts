@@ -19,15 +19,17 @@ export const updateState = (state: State, team: Team, scored: boolean): State =>
         scoreB: newScores.B,
         history: newHistory,
         shotsRemaining: state.shotsRemaining - 1,
+        shotsA: team === "A" ? state.shotsA + 1 : state.shotsA,
+        shotsB: team === "B" ? state.shotsB + 1 : state.shotsB,
     };
 };
 
 
 export const checkWinner = (state: State): string | null => {
-    const {scoreA, scoreB, totalShots} = state;
+    const {scoreA, scoreB, shotsA, shotsB, totalShots} = state;
 
-    if (scoreA > scoreB && scoreA - scoreB > totalShots / 2) return "Équipe A";
-    if (scoreB > scoreA && scoreB - scoreA > totalShots / 2) return "Équipe B";
+    if (scoreA > scoreB + (totalShots - shotsB)) return "Équipe A"; // L'équipe A ne peut plus être rattrapée
+    if (scoreB > scoreA + (totalShots - shotsA)) return "Équipe B"; // L'équipe B ne peut plus être rattrapée
 
-    return null;
+    return null; // Pas de gagnant pour l'instant
 }

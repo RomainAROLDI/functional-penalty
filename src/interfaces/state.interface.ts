@@ -4,4 +4,6 @@ export interface State {
     history: string[];
     shotsRemaining: number;
     totalShots: number;
+    shotsA: number;
+    shotsB: number;
 }

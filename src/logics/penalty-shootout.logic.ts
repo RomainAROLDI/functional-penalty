@@ -4,14 +4,13 @@ import type {Team} from "../types/team.type.ts";
 import {simulatePenaltyKick} from "../utils/simulation.util.ts";
 
 export const penaltyShootout = (state: State): State => {
+    const winner = checkWinner(state);
+    if (winner) {
+        state.history.push(`Victoire : ${winner} (Score : ${state.scoreA}/${state.scoreB})`);
+        return state;
+    }
+
     if (state.shotsRemaining === 0) {
-        const winner = checkWinner(state);
-
-        if (winner) {
-            state.history.push(`Victoire : ${winner} (Score : ${state.scoreA}/${state.scoreB})`);
-            return state;
-        }
-
         // Prolongation de la séance de tirs au but
         return penaltyShootout({...state, shotsRemaining: 2});
     }
