@@ -9,3 +9,12 @@ export const updateState = (state: State, team: Team, scored: boolean): State =>
 
     return {scoreA: newScoreA, scoreB: newScoreB, history: newHistory};
 }
+
+export const checkWinner = (state: State, totalShots: number): string | null => {
+    const {scoreA, scoreB} = state;
+
+    if (scoreA > scoreB && scoreA - scoreB > totalShots / 2) return "Équipe A";
+    if (scoreB > scoreA && scoreB - scoreA > totalShots / 2) return "Équipe B";
+
+    return null;
+}
