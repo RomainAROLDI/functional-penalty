@@ -3,7 +3,7 @@ import {checkWinner, updateState} from "../utils/state.util.ts";
 import type {Team} from "../types/team.type.ts";
 import {simulatePenaltyKick} from "../utils/simulation.util.ts";
 
-export function penaltyShootout(state: State): State {
+export const penaltyShootout = (state: State): State => {
     if (state.shotsRemaining === 0) {
         const winner = checkWinner(state);
 
